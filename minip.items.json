@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d4b"
+  },
+  "category": "Electronics",
+  "item": "Smartphone",
+  "qty": 10,
+  "price": 800
+},
+{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d4c"
+  },
+  "category": "Clothing",
+  "item": "T-Shirt",
+  "qty": 20,
+  "price": 25
+},
+{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d4d"
+  },
+  "category": "Clothing",
+  "item": "Jeans",
+  "qty": 15,
+  "price": 50
+},
+{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d4e"
+  },
+  "category": "Furniture",
+  "item": "Table",
+  "qty": 3,
+  "price": 150
+},
+{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d4f"
+  },
+  "category": "Furniture",
+  "item": "Chair",
+  "qty": 8,
+  "price": 80
+},
+{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d50"
+  },
+  "category": "Books",
+  "item": "Novel",
+  "qty": 12,
+  "price": 15
+},
+{
+  "_id": {
+    "$oid": "6561d5098d729ba44d141d51"
+  },
+  "category": "Books",
+  "item": "Textbook",
+  "qty": 5,
+  "price": 40
+}]
