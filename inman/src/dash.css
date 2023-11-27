@@ -1,0 +1,24 @@
+/* src/components/Dashboard/Dash.css */
+
+.dashboard-container {
+    display: flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    padding: 10px;
+  }
+  
+  .dashboard-block {
+    width: 800px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin : 0;
+  }
+  
+  .data {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  

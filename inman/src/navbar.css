@@ -1,0 +1,28 @@
+/* Navbar.css */
+
+nav {
+    background-color: #c64d4d;
+    padding: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-right: 15px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    color: lightgray;
+  }
+  
