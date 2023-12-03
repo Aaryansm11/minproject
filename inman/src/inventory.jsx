@@ -6,11 +6,14 @@ const Inventory = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editItemId, setEditItemId] = useState(null);
   const [showAddItemModal, setShowAddItemModal] = useState(false);
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
+  const [selectedItemDescription, setSelectedItemDescription] = useState("");
   const [formValues, setFormValues] = useState({
     category: "",
     item: "",
     qty: 0,
     price: 0,
+    description: "",
   });
 
   useEffect(() => {
@@ -39,10 +42,18 @@ const Inventory = () => {
       item: selectedItem.item,
       qty: selectedItem.qty,
       price: selectedItem.price,
+      description: selectedItem.description,
     });
   };
 
   const handleDelete = (itemId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?",
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
     fetch(`http://localhost:3000/items/${itemId}`, {
       method: "DELETE",
     })
@@ -59,6 +70,12 @@ const Inventory = () => {
       .catch((error) => console.error("Error deleting item:", error));
   };
 
+  const handleRowClick = (itemId) => {
+    const selectedItem = inventoryData.find((item) => item._id === itemId);
+    setSelectedItemDescription(selectedItem.description);
+    setShowDescriptionModal(true);
+  };
+
   const handleAddItem = () => {
     setShowAddItemModal(true);
     setFormValues({
@@ -66,6 +83,7 @@ const Inventory = () => {
       item: "",
       qty: 0,
       price: 0,
+      description: "", // Include description in formValues
     });
   };
 
@@ -140,13 +158,23 @@ const Inventory = () => {
             <tbody>
               {inventoryData.map((item) => (
                 <tr key={item._id}>
-                  <td>{item.category}</td>
-                  <td>{item.item}</td>
-                  <td>{item.qty}</td>
-                  <td>{item.price}</td>
+                  <td onClick={() => handleRowClick(item._id)}>
+                    {item.category}
+                  </td>
+                  <td onClick={() => handleRowClick(item._id)}>{item.item}</td>
+                  <td onClick={() => handleRowClick(item._id)}>{item.qty}</td>
+                  <td onClick={() => handleRowClick(item._id)}>{item.price}</td>
                   <td>
-                    <button onClick={() => handleEdit(item._id)}>Edit</button>
-                    <button onClick={() => handleDelete(item._id)}>
+                    <button
+                      className="edit-btn"
+                      onClick={() => handleEdit(item._id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(item._id)}
+                    >
                       Delete
                     </button>
                   </td>
@@ -197,10 +225,23 @@ const Inventory = () => {
                     onChange={handleInputChange}
                   />
                 </div>
+                <div className="modal-input-row">
+                  <label>Description:</label>
+                  <input
+                    type="text"
+                    name="description"
+                    value={formValues.description}
+                    onChange={handleInputChange}
+                  />
+                </div>
                 <button type="button" onClick={handleEditSubmit}>
                   Save Changes
                 </button>
-                <button type="button" onClick={() => setShowEditModal(false)}>
+                <button
+                  className="close-btn"
+                  type="button"
+                  onClick={() => setShowEditModal(false)}
+                >
                   Close
                 </button>
               </form>
@@ -247,16 +288,40 @@ const Inventory = () => {
                     onChange={handleInputChange}
                   />
                 </div>
+                <div className="modal-input-row">
+                  <label>Description:</label>
+                  <input
+                    type="text"
+                    name="description"
+                    value={formValues.description}
+                    onChange={handleInputChange}
+                  />
+                </div>
                 <button type="button" onClick={handleAddItemSubmit}>
                   Add Item
                 </button>
                 <button
                   type="button"
+                  className="close-btn"
                   onClick={() => setShowAddItemModal(false)}
                 >
                   Close
                 </button>
               </form>
+            </div>
+          </div>
+        )}
+        {showDescriptionModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>Description</h2>
+              <p>{selectedItemDescription}</p>
+              <button
+                className="close-btn"
+                onClick={() => setShowDescriptionModal(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         )}

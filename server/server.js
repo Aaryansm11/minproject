@@ -34,14 +34,24 @@ app.get("/items", async (req, res) => {
   }
 });
 
+app.delete("/items", async (req, res) => {
+  try {
+    await db.collection(itemCollection).deleteMany({});
+    res.json({ message: "All items deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.post("/items", async (req, res) => {
-  const { category, item, qty, price } = req.body;
+  const { category, item, qty, price, description } = req.body;
   try {
     const newItem = {
       category,
       item,
       qty: parseInt(qty),
       price: parseInt(price),
+      description,
     };
     await db.collection(itemCollection).insertOne(newItem);
     res.json(newItem);
@@ -62,12 +72,18 @@ app.delete("/items/:id", async (req, res) => {
 
 app.patch("/items/:id", async (req, res) => {
   const { id } = req.params;
-  const { category, item, qty, price } = req.body;
+  const { category, item, qty, price, description } = req.body;
   try {
     const updatedItem = await db.collection(itemCollection).findOneAndUpdate(
       { _id: new ObjectId(id) },
       {
-        $set: { category, item, qty: parseInt(qty), price: parseInt(price) },
+        $set: {
+          category,
+          item,
+          qty: parseInt(qty),
+          price: parseInt(price),
+          description,
+        },
       },
       { returnDocument: "after" },
     );

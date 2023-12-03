@@ -106,3 +106,13 @@ input {
 .add-item-btn {
   max-width: 15rem;
 }
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+.edit-btn {
+  background-color: #3498db;
+}
+.close-btn {
+  background-color: #333;
+}

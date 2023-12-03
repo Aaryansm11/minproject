@@ -8,6 +8,7 @@ import {
 import Navbar from "./navbar.jsx";
 import Dashboard from "./dash.jsx";
 import Inventory from "./inventory.jsx";
+import Settings from "./settings.jsx";
 
 const Layout = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="/inventory" element={<Inventory />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
     </Router>
