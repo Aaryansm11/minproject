@@ -1,28 +1,35 @@
-/* Navbar.css */
+/* navbar.css */
 
 nav {
-    background-color: #c64d4d;
-    padding: 10px;
-  }
-  
-  ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    margin-right: 15px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    color: lightgray;
-  }
-  
+  background-color: rgba(255, 255, 255, 0.5); 
+  padding: 15px; /* Increase padding for a bigger navbar */
+  font-family:'Times New Roman', Times, serif;
+  margin-bottom: 50px; /* Add margin at the bottom to cover the area on top */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  outline: 10px black;
+
+}
+
+li {
+  margin-right: 30px; /* Adjust margin for more spacing between navbar items */
+
+}
+
+a {
+  text-decoration: none;
+  color: #1c2432;
+  font-weight: bold;
+  font-size: 22px; /* Increase font size for better visibility */
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #6a7280;
+}
